@@ -16,7 +16,7 @@ export class AppComponent {
   pdfUrl: SafeResourceUrl | null = null;
   pdfLink: string = '';
 
-  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>; // Corrected line!
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   private http = inject(HttpClient);
   private sanitizer = inject(DomSanitizer);
@@ -44,11 +44,9 @@ export class AppComponent {
       this.http.post('YOUR_BACKEND_ENDPOINT', formData).subscribe({
         next: (response: any) => {
           console.log('PDF uploaded successfully', response);
-          // Handle response, e.g., display success message
         },
         error: (error: any) => {
           console.error('Error uploading PDF', error);
-          // Handle error, e.g., display error message
         }
       });
     }

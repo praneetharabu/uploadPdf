@@ -1,59 +1,86 @@
-# Newapp
+# PDF Viewer Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
+This Angular application allows users to upload or view PDF documents.
 
-## Development server
+## Features
 
-To start a local development server, run:
+* **PDF Upload:** Users can upload PDF files by dragging and dropping them into a designated area or by selecting them from their local file system.
+* **PDF Link Viewing:** Users can enter a URL to a PDF document, and the application will display it in an iframe.
+* **Standalone Component:** The application is built using Angular standalone components.
+* **Bootstrap Styling:** The application uses Bootstrap for responsive and consistent styling.
+* **Server-Side Proxy:** The application uses a Node.js server-side proxy to bypass security restrictions when viewing external PDFs in an iframe.
 
-```bash
-ng serve
-```
+## Getting Started
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Prerequisites
 
-## Code scaffolding
+* Node.js and npm installed
+* Angular CLI installed (`npm install -g @angular/cli`)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Local Setup
 
-```bash
-ng generate component component-name
-```
+1.  **Clone the repository:**
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+    ```bash
+    git clone <your-repository-url>
+    cd <your-repository-directory>
+    ```
 
-```bash
-ng generate --help
-```
+2.  **Install dependencies:**
 
-## Building
+    ```bash
+    npm install
+    ```
 
-To build the project run:
+3.  **Run the Angular application:**
 
-```bash
-ng build
-```
+    ```bash
+    ng serve --open
+    ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+4.  **Run the Backend Proxy:**
+    * Navigate to the directory containing `server.js` (or your chosen backend script).
+    * Run the backend server:
 
-## Running unit tests
+    ```bash
+    node server.js
+    ```
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+    * Ensure that the backend is running on the correct port (default: 3000).
 
-```bash
-ng test
-```
+## Running the Application
 
-## Running end-to-end tests
+1.  **Start the Angular development server:**
 
-For end-to-end (e2e) testing, run:
+    ```bash
+    ng serve --open
+    ```
 
-```bash
-ng e2e
-```
+2.  **Start the Node.js backend proxy:**
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+    ```bash
+    node server.js
+    ```
 
-## Additional Resources
+3.  **Open your browser** to `http://localhost:4200` (or the port specified by `ng serve`).
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+4.  **Upload a PDF:**
+    * Drag and drop a PDF file into the drop area or click to select a file.
+    * Click "Upload PDF" to send the file to your backend (replace `'YOUR_BACKEND_ENDPOINT'` in `pdf-viewer.component.ts`).
+
+5.  **View a PDF from a link:**
+    * Enter a PDF URL in the input field.
+    * The PDF will be displayed in the iframe.
+
+## Backend (Node.js Proxy)
+
+* The application includes a Node.js backend (`server.js`) that acts as a proxy for external PDF URLs.
+* This is necessary to bypass security restrictions when embedding external PDFs in an iframe.
+* The backend uses `express` and `axios` to fetch and serve the PDF.
+
+## Important Notes
+
+* Replace `'YOUR_BACKEND_ENDPOINT'` in `pdf-viewer.component.ts` with your actual backend URL for file uploads.
+* Be cautious when embedding external PDFs. Sanitize and validate URLs to prevent security vulnerabilities.
+* For production deployments, consider using a more robust backend solution and secure your backend endpoints.
+* If you are using a different backend language, you will need to create the proxy endpoint in that language.
